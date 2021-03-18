@@ -1,12 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+// import App from './App';
+import Test1 from './Test1'
+import Login from './Login'
+import App from './App'
+
+import Kadai_1 from './Kadai_1'
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Kadai_1 />
   </React.StrictMode>,
   document.getElementById('root')
 );
