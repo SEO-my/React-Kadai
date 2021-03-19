@@ -5,7 +5,6 @@ import './index.css';
 import Test1 from './Test1'
 import Login from './Login'
 import App from './App'
-
 import Kadai_1 from './Kadai_1'
 import reportWebVitals from './reportWebVitals';
 
