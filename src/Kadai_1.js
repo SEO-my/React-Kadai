@@ -29,8 +29,7 @@ class Kadai_1 extends Component{
             B: false,
             }
         ,da:""
-        
-        ,isToggleOn : true
+        ,resetPass : true
      }
      
 
@@ -95,6 +94,7 @@ class Kadai_1 extends Component{
 
         if(this.state.isToggleOn === true) {
             this.setState({
+                
             isToggleOn: !this.state.isToggleOn
             ,aa:this.state.aa
             ,id:this.state.id
@@ -185,8 +185,9 @@ class Kadai_1 extends Component{
             </div>
             <span className="susu5">{this.state.da}</span>  
 
-            <div className="btn"> 
+            <div className="btn" > 
                 <button onClick={this.clickButton}>{this.state.isToggleOn ? 'ボタン' : '戻る'}</button>
+                <div style={{display:`${this.state.isToggleOn === true ? "none":"block"}`}}>
                 <sapn className="susu6"> 選択状態<br></br>
                 <p onClick={this.clickButton}>選択： {this.state.aa}</p>
                 <p onClick={this.clickButton}>INPUT： {this.state.id}</p>
@@ -194,6 +195,7 @@ class Kadai_1 extends Component{
                 <p onClick={this.clickButton}>コンボボックスA： {this.state.ca}</p>
                 <p onClick={this.clickButton}>コンボボックスB： {this.state.da}</p>
                 </sapn>
+                </div>
             </div>
             </div>
         </body>
