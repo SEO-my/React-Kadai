@@ -10,35 +10,46 @@ class Kadai_1 extends Component{
         }
     state = {
         checkGroup: {
-            選択A: false,
-            選択B: false,
-            選択C: false,
-            選択D: false,
+            A: false,
+            B: false,
+            C: false,
+            D: false
         }
+
+
         ,aa:""
         ,id:""
         ,radioGroup: {
-        A: false,
-        B: false,
+            A: false,
+            B: false,
         }
         ,na:""
-        ,ca:""
+        ,selectGroupA: {
+            A: false,
+            B: false,
+            }
         ,da:""
         
         ,isToggleOn : true
-
      }
-
+     
 
      handleCheck = e => {
-        var item = e.target.name;
-        console.log(e.target.name);
+        const obj = {}
+        obj[e.target.value] = e.target.checked 
+        console.log(e.target.checked);
         var temp = e.target.name;
-        this.setState({
-            checkGroup: item
-            ,aa: temp
-        });
-    };
+        if ( e.target.checked === true) {
+            for(let i = 0; i< 3; i++) {
+                this.setState({
+                    checkGroup: obj
+                    ,aa: temp
+                })
+            
+            }
+        }
+    }
+
 
      changeId = (e) =>{
         var name=e.target.name;
@@ -50,9 +61,9 @@ class Kadai_1 extends Component{
     }
     
     handleRadio = (e) => {
-        var obj = {}
+        const obj = {}
         obj[e.target.value] = e.target.checked // true
-        console.log(e.target.name);
+        console.log(e.target.checked);
         var temp = e.target.name;
         this.setState({
             radioGroup: obj
@@ -61,8 +72,11 @@ class Kadai_1 extends Component{
       }
 
       handleSelectA = e => {
-        console.log(e.target.value);
+        const obj = {}
+        obj[e.target.value] = e.target.checked 
+        console.log(e.target.checked);
         var temp = e.target.value;
+        const i=5;
         this.setState({
             ca:temp
         });
@@ -75,60 +89,76 @@ class Kadai_1 extends Component{
         });
     };
 
-    openModal = () => {
-        this.setState({ isModalOpen: true });
-      }
-      
-      closeModal = () => {
-        this.setState({ isModalOpen: false }); 
-      }
 
     clickButton = (e) => {
         console.log(e.target.value);
-        this.setState({
+
+        if(this.state.isToggleOn === true) {
+            this.setState({
             isToggleOn: !this.state.isToggleOn
+            ,aa:this.state.aa
+            ,id:this.state.id
+            ,na:this.state.na
+            ,ca:this.state.ca
+            ,da:this.state.da
+            })
+        }else {
+            this.setState({
+            isToggleOn: !this.state.isToggleOn
+            ,aa:""
+            ,id:""
+            ,na:""
+            ,ca:""
+            ,da:""
         })
     }
-
+}
     
 
 
     render() {
         
         return (
-            <>
-            <div style={{backgroundColor:"green", width:"300px"}}>選択<br></br>
+          
+        <body>
+            <div className="Kadai-Wrap">
+            <div>
             <form className="Kadai-Border">
-                <input type="Checkbox" name="選択A" checked={this.state.checkGroup['選択A']}
+                <p style={{backgroundColor:"aquamarine", margin:"0", height:"30px"}}>選択</p>
+                <input type="Checkbox" name="選択A" checked={this.state.checkGroup['A']} 
                 onChange={this.handleCheck}></input>選択A<br></br>
-                <input type="Checkbox" name="選択B" checked={this.state.checkGroup['選択B']}
+                <input type="Checkbox" name="選択B" checked={this.state.checkGroup['B']} 
                 onChange={this.handleCheck}></input>選択B<br></br>
-                <input type="Checkbox" name="選択C" checked={this.state.checkGroup['選択C']}
+                <input type="Checkbox" name="選択C" checked={this.state.checkGroup['C']} 
                 onChange={this.handleCheck}></input>選択C<br></br>
-                <input type="Checkbox" name="選択D" checked={this.state.checkGroup['選択D']}
+                <input type="Checkbox" name="選択D" checked={this.state.checkGroup['D']} 
                 onChange={this.handleCheck}></input>選択D
-                <p>{this.state.aa}</p>
-
             </form>
+            <span className="susu1">{this.state.aa}</span>  
+            
             </div>
             
-            <div style={{backgroundColor:"orange", width:"300px"}}>INPUT<br></br>
-                <input className="Kadai-Border" name="id" value={this.state.id} onChange={this.changeId}></input> {this.state.id}
+            <div className="Kadai-Border">
+                <p style={{backgroundColor:"orange", margin:"0", height:"30px"}}>INPUT</p>
+                <input style={{width: "-webkit-fill-available", height:"30px"}} name="id" value={this.state.id} onChange={this.changeId}></input> 
             </div>
+            <span className="susu2">{this.state.id}</span> 
 
-            <div style={{backgroundColor:"yellow", width:"300px"}}>ラジオ<br></br>
+            <div className="Kadai-Border">
+            <p style={{backgroundColor:"yellow", margin:"0", height:"30px"}}>ラジオ</p>
             <form>
                 A:<input type="radio" name="A" value="A" checked={this.state.radioGroup['A']} 
                 onChange={this.handleRadio}></input>
                 B:<input type="radio" name="B" value="B" checked={this.state.radioGroup['B']} 
                 onChange={this.handleRadio}></input>
-                <p>{this.state.na}</p>
             </form>
             </div>
+            <span className="susu3">{this.state.na}</span>  
 
-            <div style={{backgroundColor:"green", width:"300px"}}>コンボボックスA<br></br>
+            <div className="Kadai-Border">
+            <p style={{backgroundColor:"yellowgreen", margin:"0", height:"30px"}}>コンボボックスA</p>
             <form>
-                <select value={this.state.value} onChange={this.handleSelectA}>
+                <select style={{width: "-webkit-fill-available", height:"30px"}} checked={this.state.selectGroupA['A']}  onChange={this.handleSelectA}>
                     <option value=""></option>
                     <option name="A" value="A" >A</option>
                     <option name="B" value="B" >B</option>
@@ -136,12 +166,14 @@ class Kadai_1 extends Component{
                     <option name="D" value="D" >D</option>
                     <option name="E" value="E" >E</option>
                 </select>
-                <p>{this.state.ca}</p>
             </form>
             </div>
-            <div style={{backgroundColor:"blue", width:"300px"}}>コンボボックスA<br></br>
+            <span className="susu4">{this.state.ca}</span>  
+
+            <div className="Kadai-Border">
+            <p style={{backgroundColor:"deepskyblue", margin:"0", height:"30px"}}>コンボボックスA</p>
             <form>
-                <select value={this.state.value} onChange={this.handleSelectB}>
+                <select style={{width: "-webkit-fill-available", height:"30px"}} value={this.state.value} onChange={this.handleSelectB}>
                     <option value=""></option>
                     <option name="a" value="a" >a</option>
                     <option name="b" value="b" >b</option>
@@ -149,16 +181,22 @@ class Kadai_1 extends Component{
                     <option name="d" value="d" >d</option>
                     <option name="e" value="e" >e</option>
                 </select>
-                <p>{this.state.da}</p>
             </form>
             </div>
+            <span className="susu5">{this.state.da}</span>  
 
-            <div>
+            <div className="btn"> 
                 <button onClick={this.clickButton}>{this.state.isToggleOn ? 'ボタン' : '戻る'}</button>
+                <sapn className="susu6"> 選択状態<br></br>
+                <p onClick={this.clickButton}>選択： {this.state.aa}</p>
+                <p onClick={this.clickButton}>INPUT： {this.state.id}</p>
+                <p onClick={this.clickButton}>ラジオ： {this.state.na}</p>
+                <p onClick={this.clickButton}>コンボボックスA： {this.state.ca}</p>
+                <p onClick={this.clickButton}>コンボボックスB： {this.state.da}</p>
+                </sapn>
             </div>
-         
-
-            </>
+            </div>
+        </body>
         );
     }
 }
